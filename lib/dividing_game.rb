@@ -1,9 +1,15 @@
 class DividingGame
   def getNumber(a, b)
-    (a.odd? || b.odd?) ? 0 : (get_numbers(a) & get_numbers(b)).length
+    return 0 if (a.odd? || b.odd?)
+    common_elements = get_common_elements get_numbers(a), get_numbers(b)
+    common_elements.length
   end
 
   private
+
+  def get_common_elements(arr1, arr2)
+    arr1 & arr2
+  end
 
   def get_numbers(num)
     acc = []
