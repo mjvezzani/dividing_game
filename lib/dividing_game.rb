@@ -1,24 +1,21 @@
 class DividingGame
   def getNumber(a, b)
-    return 0 if (a.odd? || b.odd?)
-
-    a_times, b_times = [], []
-
-    push_and_divide(a_times, a)
-    push_and_divide(b_times, b)
-
-    (a_times & b_times).length
+    (a.odd? || b.odd?) ? 0 : (get_numbers(a) & get_numbers(b)).length
   end
 
   private
 
-  # I found help understanding recursion in ruby by reading under the Recursion heading
-  # at: https://launchschool.com/books/ruby/read/loops_iterators
-  def push_and_divide(acc, num)
+  def get_numbers(num)
+    acc = []
+    accumulate_and_divide(num, acc)
+    acc
+  end
+
+  def accumulate_and_divide(num, acc)
     acc << num
     if num.even?
       num /= 2
-      push_and_divide(acc, num)
+      accumulate_and_divide(num, acc)
     end
   end
 end
